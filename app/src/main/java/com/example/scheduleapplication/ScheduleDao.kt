@@ -8,6 +8,7 @@ import androidx.room.Query
 @Dao
 interface ScheduleDao {
 
+    // データベースへデータを入力
     @Insert
     fun insert(schedule: Schedule)
 
@@ -15,7 +16,7 @@ interface ScheduleDao {
     @Query("DELETE FROM schedule_table")
     fun deleteAll()
 
-    // idの昇順で全データを所得
-    @Query("SELECT * FROM schedule_table ORDER BY id ASC")
-    fun getAllScheduleData(): LiveData<List<Schedule>>
+    // データベースの全データを取得
+    @Query("SELECT * FROM schedule_table")
+    fun getAllSchedule(): LiveData<List<Schedule>>
 }

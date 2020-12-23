@@ -18,13 +18,13 @@ class ScheduleViewModel(application: Application) : AndroidViewModel(application
         get() = parentJob + Dispatchers.Main
     private val scope = CoroutineScope(coroutineContext)
 
-    private val repository: ScheduleRepository // Repositoryの宣言
-    val allScheduleData: LiveData<List<Schedule>> // idの昇順で全データを格納
+    private val repository: ScheduleRepository
+    val allSchedule: LiveData<List<Schedule>> // データベースの全データを格納
 
     init{
         val scheduleDao = ScheduleRoomDatabase.getDatabase(application, scope).scheduleDao()
-        repository = ScheduleRepository(scheduleDao) // Repositoryクラスのインスタンスを生成
-        allScheduleData = repository.allScheduleData // idの昇順で全データを取得
+        repository = ScheduleRepository(scheduleDao)
+        allSchedule = repository.allSchedule // データベースの全データを取得
     }
 
     // parentJobをキャンセル
@@ -33,6 +33,7 @@ class ScheduleViewModel(application: Application) : AndroidViewModel(application
         parentJob.cancel()
     }
 
+    // データベースへデータを入力する
     fun insert(schedule: Schedule) = scope.launch(Dispatchers.IO) {
         repository.insert(schedule)
     }

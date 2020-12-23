@@ -3,15 +3,15 @@ package com.example.scheduleapplication
 import androidx.annotation.WorkerThread
 import androidx.lifecycle.LiveData
 
-// データベースにアクセスするクラス
-class ScheduleRepository(private val scheduleDao: ScheduleDao) {
+// データベースへアクセスリポジトリ
+class ScheduleRepository(private val scheduleDao: ScheduleDao){
 
-    // idの昇順で全データを所得
-    val allScheduleDate: LiveData<List<Schedule>> = scheduleDao.getAllScheduleData()
+    // データベースの全データを取得する
+    val allSchedule: LiveData<List<Schedule>> = scheduleDao.getAllSchedule( )
 
-    // データの追加
+    // データベースへデータを入力する
     @WorkerThread
-    suspend fun insert(schedule: Schedule){
+    suspend fun insert(schedule: Schedule) {
         scheduleDao.insert(schedule)
     }
 }

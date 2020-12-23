@@ -1,29 +1,33 @@
 package com.example.scheduleapplication
 
 import android.content.Context
-import androidx.room.*
+import androidx.room.Database
+import androidx.room.Room
+import androidx.room.RoomDatabase
+import androidx.sqlite.db.SupportSQLiteDatabase
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 @Database(entities = [Schedule::class], version = 1)
-abstract class ScheduleRoomDatabase : RoomDatabase(){
+abstract class ScheduleRoomDatabase : RoomDatabase() {
 
     abstract fun scheduleDao(): ScheduleDao
 
-    // インスタンスの生成を１つだけにする
-    companion object{
+    companion object {
         @Volatile
         private var INSTANCE: ScheduleRoomDatabase? = null
 
-        // インスタンスを取得
         fun getDatabase(
             context: Context,
             scope: CoroutineScope
-        ): ScheduleRoomDatabase{
-            return INSTANCE ?: synchronized(this){
+        ): ScheduleRoomDatabase {
+            return INSTANCE ?: synchronized(this) {
+                // Room databaseを取得
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
                     ScheduleRoomDatabase::class.java,
-                    "Schedule_database"
+                    "Word_database"
                 ).build()
                 INSTANCE = instance
                 instance
