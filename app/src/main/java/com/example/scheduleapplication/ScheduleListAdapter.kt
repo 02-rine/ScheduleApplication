@@ -12,11 +12,18 @@ class ScheduleListAdapter(
     context: Context
 ) : RecyclerView.Adapter<ScheduleListAdapter.ScheduleViewHolder>(){
 
+    private var listener: ((Int?) -> Unit)? = null
+    // 関数型の変数Listenerに登録する
+    fun setOnItemClickListener(listener: (Int?)-> Unit){
+        this.listener = listener
+    }
+
     private val inflater: LayoutInflater = LayoutInflater.from(context)
     private var schedule = emptyList<Schedule>()
 
     inner class ScheduleViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
-        val scheduleItem: TextView = itemView.findViewById(R.id.titleText)
+        var dateText: TextView = itemView.findViewById(R.id.dateText)
+        var titleIText: TextView = itemView.findViewById(R.id.titleText)
     }
 
     // ScheduleViewHolderのオブジェクト生成をするメソッド
@@ -27,8 +34,13 @@ class ScheduleListAdapter(
 
     // ScheduleViewHolder内の各画面部品に表示データを割り当てるメソッド
     override fun onBindViewHolder(holder: ScheduleListAdapter.ScheduleViewHolder, position: Int) {
-        val current = schedule[position]
-        holder.scheduleItem.text = current.title
+        val scheduleItem = schedule[position]
+        holder.titleIText.text = scheduleItem.title
+        holder.dateText.text = "test"
+        // RecyclerViewのがタップされたことをMainActivityへ通知する
+        holder.itemView.setOnClickListener{
+            listener?.invoke(scheduleItem.id) // タップされたセルのIDを送る
+        }
     }
 
     // scheduleのセッター

@@ -23,6 +23,12 @@ class MainActivity : AppCompatActivity() {
         val adapter = ScheduleListAdapter(this)
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this) // 各画面部品を縦に並べる
+        // RecyclerViewをクリック時、SetScheduleDataActivityに画面遷移
+        adapter.setOnItemClickListener { id ->
+            val intent = Intent(this@MainActivity, SetScheduleDataActivity::class.java)
+                .putExtra("SCHEDULE_ID", id) // タップされたセルのIDをSetScheduleDataActivityに送る
+            startActivityForResult(intent, REQUEST_CODE)
+        }
 
         scheduleViewModel = ViewModelProviders.of(this).get(ScheduleViewModel::class.java)
         // データセットが変更された時に呼ばれる
@@ -47,12 +53,11 @@ class MainActivity : AppCompatActivity() {
 
         if (requestCode == REQUEST_CODE && resultCode == Activity.RESULT_OK) {
             // SetScheduleDataActivityのタイトルが入力された場合
-            val schedule = Schedule(data?.getStringExtra("INPUT_TITLE")!!)
+            val schedule = Schedule(0, "noDate", data?.getStringExtra("INPUT_TITLE")!!, "noData")
             scheduleViewModel.insert(schedule)
         } else {
             // SetScheduleDataActivityのタイトルが未入力の場合
             Toast.makeText(applicationContext, "保存できませんでした", Toast.LENGTH_SHORT).show()
-            Log.i("test", "test")
         }
     }
 }
