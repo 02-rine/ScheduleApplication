@@ -1,5 +1,6 @@
 package com.example.scheduleapplication
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
@@ -16,5 +17,5 @@ interface ScheduleDao {
 
     // idの昇順で全データを所得
     @Query("SELECT * FROM schedule_table ORDER BY id ASC")
-    fun getAllScheduleData(): List<Schedule>
+    fun getAllScheduleData(): LiveData<List<Schedule>>
 }
