@@ -27,7 +27,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
-                android:id="@+id/toolbar_text"
+                android:id="@+id/toolbarText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"/>
@@ -91,6 +91,8 @@
             android:id="@+id/tildeText"
             android:layout_width="20dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="4dp"
             android:text="@string/tildeText"
             android:textSize="24sp"
             android:textStyle="bold"
@@ -103,11 +105,10 @@
             android:id="@+id/startTimeButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
             android:layout_marginBottom="16dp"
             android:padding="1dp"
-            android:textSize="18sp"
             android:text="@{schedule.startTime}"
+            android:textSize="18sp"
             app:layout_constraintBottom_toTopOf="@+id/titleEdit"
             app:layout_constraintHorizontal_chainStyle="spread"
             app:layout_constraintStart_toEndOf="@+id/startText" />
@@ -128,7 +129,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:text="開始時刻"
+            android:text="開始時刻 : "
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/startTimeButton"
@@ -139,8 +140,7 @@
             android:id="@+id/endText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:text="終了時刻"
+            android:text="終了時刻 : "
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/endTimeButton"
