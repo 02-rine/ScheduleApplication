@@ -1,63 +1,1 @@
-package com.example.scheduleapplication
-
-import android.app.Activity
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
-import android.util.Log
-import android.widget.Toast
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
-import androidx.recyclerview.widget.LinearLayoutManager
-import kotlinx.android.synthetic.main.activity_main.*
-
-class MainActivity : AppCompatActivity() {
-
-    private lateinit var scheduleViewModel: ScheduleViewModel
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-
-        // RecyclerViewの設定
-        val adapter = ScheduleListAdapter(this)
-        recyclerView.adapter = adapter
-        recyclerView.layoutManager = LinearLayoutManager(this) // 各画面部品を縦に並べる
-        // RecyclerViewをクリック時、SetScheduleDataActivityに画面遷移
-        adapter.setOnItemClickListener { id ->
-            val intent = Intent(this@MainActivity, SetScheduleDataActivity::class.java)
-                .putExtra("SCHEDULE_ID", id) // タップされたセルのIDをSetScheduleDataActivityに送る
-            startActivityForResult(intent, REQUEST_CODE)
-        }
-
-        scheduleViewModel = ViewModelProviders.of(this).get(ScheduleViewModel::class.java)
-        // データセットが変更された時に呼ばれる
-        scheduleViewModel.allSchedule.observe(this, Observer { schedule ->
-            schedule?.let {
-                adapter.setSchedule(it)
-            }
-        })
-
-        // SetScheduleDataActivityに画面遷移
-        fab.setOnClickListener{
-            val intent = Intent(this@MainActivity, SetScheduleDataActivity::class.java)
-            startActivityForResult(intent, REQUEST_CODE)
-        }
-    }
-    companion object{
-        const val REQUEST_CODE = 1 // SetScheduleDataActivityを起動するときのリクエストコードの定義
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-
-        if (requestCode == REQUEST_CODE && resultCode == Activity.RESULT_OK) {
-            // SetScheduleDataActivityのタイトルが入力された場合
-            val schedule = Schedule(0, "noDate", data?.getStringExtra("INPUT_TITLE")!!, "noData")
-            scheduleViewModel.insert(schedule)
-        } else {
-            // SetScheduleDataActivityのタイトルが未入力の場合
-            Toast.makeText(applicationContext, "保存できませんでした", Toast.LENGTH_SHORT).show()
-        }
-    }
-}
+package com.example.scheduleapplicationimport android.content.Intentimport androidx.appcompat.app.AppCompatActivityimport android.os.Bundleimport android.util.Logimport android.widget.Toastimport androidx.activity.viewModelsimport androidx.lifecycle.Observerimport androidx.recyclerview.widget.DividerItemDecorationimport androidx.recyclerview.widget.LinearLayoutManagerimport kotlinx.android.synthetic.main.activity_main.*import kotlinx.android.synthetic.main.activity_select_schedule_data.*import java.util.*class MainActivity : AppCompatActivity() {    private val scheduleViewModel: ScheduleViewModel by viewModels()    var countDate = mutableMapOf<String, Int>()    override fun onCreate(savedInstanceState: Bundle?) {        super.onCreate(savedInstanceState)        setContentView(R.layout.activity_main)        // dayRecyclerViewの設定        val adapter = DayScheduleListAdapter(this)        val itemDecoration = DividerItemDecoration(this, DividerItemDecoration.VERTICAL)        dayRecyclerView.adapter = adapter        dayRecyclerView.addItemDecoration(itemDecoration)        dayRecyclerView.layoutManager = LinearLayoutManager(this) // 各セルを縦に並べる        // 日付と日付のカウント数の内容の変更を検知        scheduleViewModel.countDate.observe(this, Observer {            adapter.setSchedule(it) // dayRecyclerViewを再設定        })        // dayRecyclerViewのセルをタップ時、SelectScheduleDataActivityに画面遷移        adapter.setOnItemClickListener { countDate ->            val date = countDate.date // タップされたセルの日付を取得            val intent = Intent(this@MainActivity, SelectScheduleDataActivity::class.java)            intent.putExtra("DATE", date)            startActivity(intent)        }        // カレンダーをタップした時、SelectScheduleDataActivityに画面遷移        calendarView.setOnDateChangeListener{ view, year, month, dayOfMonth ->            val nextMonth = month.toInt() + 1 // １か月進める            val date = "$year/$nextMonth/$dayOfMonth"            val intent = Intent(this@MainActivity, SelectScheduleDataActivity::class.java)            intent.putExtra("DATE", date)            startActivity(intent)        }    }}
