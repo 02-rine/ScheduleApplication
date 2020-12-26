@@ -27,7 +27,7 @@ abstract class ScheduleRoomDatabase : RoomDatabase() {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
                     ScheduleRoomDatabase::class.java,
-                    "Word_database"
+                    "Schedule_database"
                 ).build()
                 INSTANCE = instance
                 instance
