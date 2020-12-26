@@ -1,2 +1,2 @@
-# ScheduleApplicaton
+# ScheduleApplication
 スケジュール管理用のアプリケーション
