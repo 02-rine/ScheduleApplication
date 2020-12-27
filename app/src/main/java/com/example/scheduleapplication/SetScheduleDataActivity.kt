@@ -4,19 +4,13 @@ import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.format.DateFormat
-import android.util.Log
+import android.view.MenuItem
 import android.view.View
 import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
 import com.example.scheduleapplication.databinding.ActivitySetScheduleDataBinding
 import com.google.android.material.snackbar.Snackbar
-import kotlinx.android.synthetic.main.activity_select_schedule_data.*
 import kotlinx.android.synthetic.main.activity_set_schedule_data.*
-import kotlinx.android.synthetic.main.time_recyclerview_item.*
-import java.lang.IllegalArgumentException
-import java.text.ParseException
-import java.text.SimpleDateFormat
 import java.util.*
 
 // 各データを登録するためのActivity
@@ -35,9 +29,12 @@ class SetScheduleDataActivity : AppCompatActivity(), TimePickerFragment.OnTimeSe
         binding.schedule = Schedule(0, "", "", "", "", "")
         binding.lifecycleOwner = this
 
-        val scheduleID = intent.getIntExtra("SCHEDULE_ID", 0) // タップされたtimeRecyclerViewのIDを取得
-        val date: String? = intent.getStringExtra("SCHEDULE_DATE") // タップされたtimeRecyclerViewの日付を取得
-        toolbarText.text = date // toolbarのtoolbarTextに日付を表示
+        val scheduleID = intent.getIntExtra("SCHEDULE_ID", 0) // IDの取得
+        val date: String? = intent.getStringExtra("SCHEDULE_DATE") // 日付の取得
+        setSupportActionBar(setActivityToolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true) // 戻るメニューの追加
+        supportActionBar?.title = ""
+        setActivityToolbarText.text = date // ツールバーのタイトルに日付を代入
 
         if(scheduleID != 0){
             // IDが存在する場合、timeRecyclerViewから取得した各データをViewに表示
@@ -67,8 +64,8 @@ class SetScheduleDataActivity : AppCompatActivity(), TimePickerFragment.OnTimeSe
             val replyIntent = Intent()
             val title = titleEdit.text.toString() // Viewからタイトルの取得
             val detail = detailEdit.text.toString() // Viewから詳細の取得
-            val startTime: String = startTimeButton.text.toString() // Viewから開始時刻の取得
-            val endTime: String = endTimeButton.text.toString() // Viewから終了時刻の取得
+            val startTime: String = startTimeText.text.toString() // Viewから開始時刻の取得
+            val endTime: String = endTimeText.text.toString() // Viewから終了時刻の取得
             if (scheduleID == 0) {
                 // RecyclerViewに新たにデータを作成する処理
                 schedule = Schedule(0, title, detail, date!!, startTime, endTime)
@@ -110,25 +107,33 @@ class SetScheduleDataActivity : AppCompatActivity(), TimePickerFragment.OnTimeSe
         }
 
         // 開始時点の時刻を設定
-        startTimeButton.setOnClickListener {
+        startTimeText.setOnClickListener {
             val dialog = TimePickerFragment()
             dialog.show(supportFragmentManager, "startTime_dialog")
         }
         // 終了時点の時刻を設定
-        endTimeButton.setOnClickListener {
+        endTimeText.setOnClickListener {
             val dialog = TimePickerFragment()
             dialog.show(supportFragmentManager, "endTime_dialog")
         }
+    }
+
+    // ツールバーの戻るメニューを押した時Activityを終了
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if(item.itemId == android.R.id.home){
+            finish()
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     // 時刻選択用ダイアログで時刻が選択された時に呼び出される
     override fun onSelected(hourOfDay: Int, minute: Int) {
         if(supportFragmentManager.findFragmentByTag("startTime_dialog") != null){
             // 開始時点の時刻設定ボタンがクリックされた時の処理
-            startTimeButton.text = "%1$02d:%2$02d". format(hourOfDay, minute)
+            startTimeText.text = "%1$02d:%2$02d". format(hourOfDay, minute)
         }else if(supportFragmentManager.findFragmentByTag("endTime_dialog") != null){
             // 終了時点の時刻設定ボタンがクリックされた時の処理
-            endTimeButton.text = "%1$02d:%2$02d". format(hourOfDay, minute)
+            endTimeText.text = "%1$02d:%2$02d". format(hourOfDay, minute)
         }
     }
 }
