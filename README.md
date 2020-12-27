@@ -6,3 +6,4 @@
 - スキル：LiveData・Coroutines・DataBinding
 
 ## 概要
+シンプルなスケジュール管理用のアプリケーションです。
