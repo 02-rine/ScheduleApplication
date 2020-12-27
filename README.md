@@ -16,6 +16,7 @@ Kotlinを用いたAndroidアプリです。
 <br>カレンダーかリストをタップして、予定を追加/削除する日付を選択します。
 <br><img src="demo_Image/demo1.jpg" width=35%>
 <br>
+### 2. 予定の追加/変更
 <br>選択した日付がツールバーのタイトルとして表示されます。
 <br>画面下の丸ボタン（FAB）をタップすると新しい予定を追加し、リストをタップするとその予定内容を変更します。
 <br><img src="demo_Image/demo2.jpg" width=35%>
