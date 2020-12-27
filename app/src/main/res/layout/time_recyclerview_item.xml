@@ -12,7 +12,7 @@
         android:layout_marginBottom="6dp">
 
         <TextView
-            android:id="@+id/starTimeText"
+            android:id="@+id/startTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="16sp"
@@ -26,7 +26,7 @@
             android:textSize="16dp" />
 
         <TextView
-            android:id="@+id/endTimeText"
+            android:id="@+id/endTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="16sp"
