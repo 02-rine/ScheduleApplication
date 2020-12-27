@@ -5,5 +5,9 @@
     <string name="alarmSwitch">通知</string>
     <string name="tildeText">～</string>
     <string name="titleEdit">タイトルを入力してください</string>
-    <string name="RegisterText">登録されたデータ</string>
+    <string name="RegisterText">予定一覧</string>
+    <string name="endTimeText">終了時刻 :</string>
+    <string name="startTimeText">開始時刻 :</string>
+    <string name="detailEdit">説明を追加</string>
+    <string name="toolbarText">シンプルスケジュール帳</string>
 </resources>
