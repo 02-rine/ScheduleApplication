@@ -18,15 +18,15 @@ interface ScheduleDao {
     @Delete
     fun delete(schedule: Schedule)
 
-    // 開始日時の昇順で全データを取得
+    // データベースから全データを取得
     @Query("SELECT * FROM schedule_table ORDER BY date ASC")
     fun getAllSchedule(): LiveData<List<Schedule>>
 
-    // 選択した日付の全データを取得
+    // データベースから選択した日付の全データを取得
     @Query("SELECT * FROM schedule_table WHERE date = :date ORDER BY startTime ASC")
     fun getDaySchedule(date: String): List<Schedule>
 
-    // IDに一致するデータを取得
+    // データベースからIDに一致するデータを取得
     @Query("SELECT * FROM schedule_table WHERE id=:id")
     fun getIDSchedule(id: Int): Schedule
 
