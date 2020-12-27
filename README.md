@@ -26,8 +26,8 @@ Kotlinを用いたAndroidアプリです。
 <br>予定の内容はタイトル・開始/終了時刻・タイトルの説明があります。
 <br>新しい予定を追加したときは現在の時間が開始/終了時刻に表示されます。
 <br>保存ボタンを押すことで予定を追加/変更し、削除ボタンを押すことで予定を削除します。
-<br><img src="demo_Image/demo3.jpg" width=35%>   <img src="demo_Image/demo4.jpg" width=35%>
+<br><img src="demo_Image/demo3.jpg" width=35%> <img src="demo_Image/demo4.jpg" width=35%>
 <br>
 ### 4. 予定の更新
 新しい予定を追加すると**１**と**２**のリスト内容が変化します。
-<br><img src="demo_Image/demo5.jpg" width=35%>   <img src="demo_Image/demo6.jpg" width=35%>
+<br><img src="demo_Image/demo5.jpg" width=35%> <img src="demo_Image/demo6.jpg" width=35%>
