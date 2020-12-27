@@ -31,5 +31,3 @@ Kotlinを用いたAndroidアプリです。
 ### 4. 予定の更新
 新しい予定を追加すると**１**と**２**のリスト内容が変化します。
 <br><img src="demo_Image/demo5.jpg" width=35%> <img src="demo_Image/demo6.jpg" width=35%>
-
-![result](demo_video/demo_video.gif)
