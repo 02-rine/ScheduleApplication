@@ -15,23 +15,25 @@
         tools:context=".SetScheduleDataActivity">
 
         <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
+            android:id="@+id/setActivityToolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:minHeight="?attr/actionBarSize"
             android:theme="?attr/actionBarTheme"
             android:elevation="4dp"
-            android:background="@color/cardview_light_background"
+            android:background="?attr/colorPrimary"
+            app:navigationIcon="@drawable/ic_baseline_arrow_back_24"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
-                android:id="@+id/toolbarText"
+                android:id="@+id/setActivityToolbarText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"/>
-
+                android:layout_gravity="center"
+                android:textSize="20sp"
+                android:textColor="@color/white"/>
         </androidx.appcompat.widget.Toolbar>
 
         <Button
@@ -39,7 +41,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
-            android:layout_marginBottom="16dp"
+            android:layout_marginBottom="64dp"
             android:text="@string/saveButton"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -50,7 +52,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="32dp"
-            android:layout_marginBottom="16dp"
+            android:layout_marginBottom="64dp"
             android:text="@string/deleteButton"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -59,92 +61,95 @@
         <EditText
             android:id="@+id/detailEdit"
             android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginBottom="32dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="80dp"
+            android:layout_marginEnd="32dp"
             android:ems="10"
             android:gravity="start|top"
+            android:hint="@string/detailEdit"
             android:inputType="textMultiLine"
             android:text="@{schedule.detail}"
-            app:layout_constraintBottom_toTopOf="@+id/startTimeButton"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/toolbar"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintTop_toBottomOf="@+id/tildeText" />
 
         <EditText
             android:id="@+id/titleEdit"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
+            android:layout_marginTop="80dp"
             android:layout_marginEnd="32dp"
-            android:layout_marginBottom="16dp"
             android:ems="10"
             android:hint="@string/titleEdit"
             android:inputType="textPersonName"
             android:text="@{schedule.title}"
-            app:layout_constraintBottom_toTopOf="@+id/saveButton"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/setActivityToolbar" />
 
         <TextView
             android:id="@+id/tildeText"
             android:layout_width="20dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
-            android:layout_marginEnd="4dp"
+            android:layout_marginTop="80dp"
             android:text="@string/tildeText"
             android:textSize="24sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/startTimeButton"
-            app:layout_constraintEnd_toStartOf="@+id/endText"
-            app:layout_constraintStart_toEndOf="@+id/startTimeButton"
-            app:layout_constraintTop_toTopOf="@+id/startTimeButton" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/titleEdit" />
 
-        <Button
-            android:id="@+id/startTimeButton"
+        <TextView
+            android:id="@+id/startTimeText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
+            android:layout_marginEnd="24dp"
             android:padding="1dp"
             android:text="@{schedule.startTime}"
             android:textSize="18sp"
-            app:layout_constraintBottom_toTopOf="@+id/titleEdit"
+            app:layout_constraintBottom_toBottomOf="@+id/tildeText"
+            app:layout_constraintEnd_toStartOf="@+id/tildeText"
             app:layout_constraintHorizontal_chainStyle="spread"
-            app:layout_constraintStart_toEndOf="@+id/startText" />
+            app:layout_constraintTop_toTopOf="@+id/tildeText" />
 
-        <Button
-            android:id="@+id/endTimeButton"
+        <TextView
+            android:id="@+id/endTimeText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
+            android:layout_marginStart="4dp"
             android:padding="1dp"
-            android:textSize="18sp"
             android:text="@{schedule.endTime}"
-            app:layout_constraintBottom_toBottomOf="@+id/startTimeButton"
-            app:layout_constraintEnd_toEndOf="parent" />
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/tildeText"
+            app:layout_constraintStart_toEndOf="@+id/endText"
+            app:layout_constraintTop_toTopOf="@+id/tildeText" />
 
         <TextView
             android:id="@+id/startText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:text="開始時刻 : "
+            android:layout_marginEnd="4dp"
+            android:text="@string/startTimeText"
             android:textSize="18sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/startTimeButton"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/startTimeButton" />
+            app:layout_constraintBottom_toBottomOf="@+id/tildeText"
+            app:layout_constraintEnd_toStartOf="@+id/startTimeText"
+            app:layout_constraintTop_toTopOf="@+id/tildeText" />
 
         <TextView
             android:id="@+id/endText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="終了時刻 : "
+            android:layout_marginStart="24dp"
+            android:text="@string/endTimeText"
             android:textSize="18sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/endTimeButton"
-            app:layout_constraintEnd_toStartOf="@+id/endTimeButton"
-            app:layout_constraintTop_toTopOf="@+id/endTimeButton" />
+            app:layout_constraintBottom_toBottomOf="@+id/tildeText"
+            app:layout_constraintStart_toEndOf="@+id/tildeText"
+            app:layout_constraintTop_toTopOf="@+id/tildeText" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
