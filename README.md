@@ -11,8 +11,8 @@ Kotlinを用いたAndroidアプリです。
 
 ## 使用方法
 アプリを起動すると、カレンダーと前回書いた予定の一覧がリストとして表示されます。
-<br>リストには日単位の予定のと予定の件数が表示されます。
-<br>カレンダーかリストをタップして、予定を追加したい日付を選択します。
+<br>リストには日単位の予定件数が表示されます。
+<br>カレンダーかリストをタップして、予定を追加/削除する日付を選択します。
 <br><img src="demo_Image/demo1.jpg" width=40%>
 <br><img src="demo_Image/demo2.jpg" width=40%>
 <br><img src="demo_Image/demo3.jpg" width=40%>
