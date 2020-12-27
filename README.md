@@ -20,3 +20,4 @@ Kotlinを用いたAndroidアプリです。
 <br><img src="demo_Image/demo3.jpg" width=40%>
 <br><img src="demo_Image/demo4.jpg" width=40%>
 <br><img src="demo_Image/demo5.jpg" width=40%>
+<br><img src="demo_Image/demo.jpg" width=40%>
