@@ -8,6 +8,7 @@
 ## 概要
 Kotlinを用いたAndroidアプリです。
 <br>シンプルなスケジュール管理用のアプリケーションで、カレンダーの日付を選択し、予定を追加/削除します。
+<br>![demo](demo_video/demo_video.gif)
 
 ## 使用方法
 ### 1. 日付の選択
@@ -29,5 +30,5 @@ Kotlinを用いたAndroidアプリです。
 <br><img src="demo_Image/demo3.jpg" width=35%> <img src="demo_Image/demo4.jpg" width=35%>
 <br>
 ### 4. 予定の更新
-新しい予定を追加すると**１**と**２**のリスト内容が変化します。
+新しい予定を追加すると**１**と**２**のリスト内容が更新されます。
 <br><img src="demo_Image/demo5.jpg" width=35%> <img src="demo_Image/demo6.jpg" width=35%>
