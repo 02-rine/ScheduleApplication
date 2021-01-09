@@ -3,7 +3,7 @@
 - 使用言語：Kotlin
 - フレームワーク：MVVM
 - データベース：Room
-- スキル：LiveData・Coroutines・DataBinding
+- スキル：LiveData・Coroutine・Data Binding
 
 ## 概要
 Kotlin を用いたシンプルなスケジュール管理用のアプリケーションで、カレンダーの日付を選択し、予定を追加/削除します。
