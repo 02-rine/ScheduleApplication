@@ -17,23 +17,23 @@ class ScheduleViewModel(application: Application) : AndroidViewModel(application
 
     private val repository: ScheduleRepository
     val allSchedule: LiveData<List<Schedule>> // データベースの全データを格納
-    val countDate:  LiveData<List<CountDate>> // データベースの日付と日付のカウント数を格納
-    val daySchedule = MutableLiveData<List<Schedule>>() // データベースから選択した日付の全データを格納
-    var idSchedule = MutableLiveData<Schedule>() // データベースから選択したIDのデータを格納
+    val countDate:  LiveData<List<CountDate>> // データベースの「日付」・「日付の予定件数」を格納
+    val daySchedule = MutableLiveData<List<Schedule>>() // データベースから選択した「日付」の全データを格納
+    var idSchedule = MutableLiveData<Schedule>() // データベースから選択した「ID」のデータを格納
 
     init{
         val scheduleDao = ScheduleRoomDatabase.getDatabase(application, scope).scheduleDao()
         repository = ScheduleRepository(scheduleDao)
         allSchedule = repository.allSchedule // データベースの全データを取得
-        countDate = repository.countDate // データベースの日付と日付のカウント数を取得
+        countDate = repository.countDate // データベースの「日付」・「日付の予定件数」を取得
     }
 
-    // データベースから選択した日付の全データを取得
+    // データベースから選択した「日付」の全データを取得
     fun setDaySchedule(data: String) = scope.launch(Dispatchers.IO){
         daySchedule.postValue(repository.getDaySchedule(data))
     }
 
-    // データベースからIDに一致するデータを取得
+    // データベースから「ID」に一致するデータを取得
     fun setIdSchedule(id: Int) = scope.launch(Dispatchers.IO) {
         idSchedule.postValue(repository.getIDSchedule(id))
     }

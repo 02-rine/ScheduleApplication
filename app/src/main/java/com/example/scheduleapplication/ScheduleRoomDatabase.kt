@@ -6,7 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import kotlinx.coroutines.CoroutineScope
 
-// ScheduleRoomDatabaseの設定
+// Roomにより、データベースにアクセスする
 @Database(entities = [Schedule::class], version = 1)
 abstract class ScheduleRoomDatabase : RoomDatabase() {
 

@@ -22,15 +22,15 @@ interface ScheduleDao {
     @Query("SELECT * FROM schedule_table ORDER BY date ASC")
     fun getAllSchedule(): LiveData<List<Schedule>>
 
-    // データベースから選択した日付の全データを取得
+    // データベースから選択した「日付」の全データを取得
     @Query("SELECT * FROM schedule_table WHERE date = :date ORDER BY startTime ASC")
     fun getDaySchedule(date: String): List<Schedule>
 
-    // データベースからIDに一致するデータを取得
+    // データベースから「ID」に一致するデータを取得
     @Query("SELECT * FROM schedule_table WHERE id=:id")
     fun getIDSchedule(id: Int): Schedule
 
-    // 日付と日付のカウンタ数を取得
+    // 「日付」・「日付の予定件数」を取得
     @Query("SELECT date, COUNT(date)AS count FROM schedule_table GROUP BY date ORDER BY date")
     fun getCountDate(): LiveData<List<CountDate>>
 }
