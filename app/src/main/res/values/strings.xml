@@ -2,7 +2,6 @@
     <string name="app_name">シンプルスケジュール帳</string>
     <string name="saveButton">保存</string>
     <string name="deleteButton">削除</string>
-    <string name="alarmSwitch">通知</string>
     <string name="tildeText">～</string>
     <string name="titleEdit">タイトルを入力してください</string>
     <string name="RegisterText">予定一覧</string>
